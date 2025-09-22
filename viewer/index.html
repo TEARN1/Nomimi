@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nomimi Asset Viewer</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin: 0; padding: 12px; }
+    #panel { display:flex; gap:12px; align-items:flex-start; }
+    #selector { width: 320px; }
+    model-viewer { width: 800px; height: 600px; background:#222; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <h2>Nomimi Asset Viewer</h2>
+  <div id="panel">
+    <div id="selector">
+      <label for="assetSelect">Choose asset</label>
+      <select id="assetSelect"></select>
+      <div id="meta" style="margin-top:12px;"></div>
+    </div>
+    <model-viewer id="viewer" camera-controls auto-rotate exposure="1" shadow-intensity="0.5"></model-viewer>
+  </div>
+
+  <script type="module" src="./viewer.js"></script>
+</body>
+</html>
