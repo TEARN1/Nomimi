@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "id": "rocket_factory_scene",
+      "type": "scene",
+      "path": "assets/factories/rocket_factory.glb",
+      "thumbnail": "assets/factories/rocket_factory_thumbnail.jpg",
+      "name": "Rocket Factory (prototype)",
+      "tags": ["factory", "rocket", "launchpad"]
+    },
+    {
+      "id": "rocket_model",
+      "type": "model",
+      "path": "assets/vehicles/rocket.glb",
+      "thumbnail": "assets/vehicles/rocket_thumbnail.jpg",
+      "name": "Launch Vehicle (proto)",
+      "tags": ["rocket", "vehicle"]
+    }
+  ]
+}
