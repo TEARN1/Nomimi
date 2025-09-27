@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nomimi Ultra-Complex System Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Nomimi Ultra-Complex System Results</h1>
+    <section>
+        <h2>Spaceship Design</h2>
+        <pre>{{ results['spaceship_desc'] }}</pre>
+        <h3>Sections</h3>
+        <ul>
+            {% for section in results['spaceship_sections'] %}
+                <li>{{ section }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Metrics</h3>
+        <table>
+            {% for key, value in results['spaceship_metrics'].items() %}
+            <tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section>
+        <h2>Knowledge Graph</h2>
+        <ul>
+            {% for topic, info in results['knowledge'].items() %}
+                <li><strong>{{ topic }}</strong>: {{ info }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Requirements & Conflicts</h2>
+        <ul>
+            {% for req in results['requirements'] %}
+                <li>{{ req }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Conflicts</h3>
+        <ul>
+            {% for conflict in results['conflicts'] %}
+                <li>{{ conflict }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Trade Study</h2>
+        Best Option: <strong>{{ results['trade_best'] }}</strong>
+    </section>
+    <section>
+        <h2>Risk Assessment</h2>
+        <ul>
+            {% for subsystem, risk in results['risks'].items() %}
+                <li>{{ subsystem }}: {{ risk }}</li>
+            {% endfor %}
+        </ul>
+        <strong>Total Risk:</strong> {{ results['risk_total'] }}
+    </section>
+    <section>
+        <h2>Collaboration History</h2>
+        <ul>
+            {% for version, change in results['collab_history'] %}
+                <li><strong>{{ version }}</strong>: {{ change }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Supply Chain</h2>
+        <pre>{{ results['supply_chain'] }}</pre>
+    </section>
+    <section>
+        <h2>Security Status</h2>
+        <ul>
+            <li>Admin User: {{ results['security_status']['admin_user'] }}</li>
+            <li>Guest User: {{ results['security_status']['guest_user'] }}</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Feedback</h2>
+        <ul>
+            {% for user, msg in results['feedback'] %}
+                <li><strong>{{ user }}</strong>: {{ msg }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Compliance Audit</h2>
+        <ul>
+            {% for violation in results['compliance'] %}
+                <li>{{ violation }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Deployment Status</h2>
+        <p>{{ results['deployment'] }}</p>
+    </section>
+</body>
+</html>
