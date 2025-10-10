@@ -1,0 +1,1 @@
+"""Component catalog package initializer."""
