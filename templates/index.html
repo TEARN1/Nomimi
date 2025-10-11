@@ -96,5 +96,106 @@
         <h2>Deployment Status</h2>
         <p>{{ results['deployment'] }}</p>
     </section>
+
+    <!-- New Capability Sections -->
+    <section>
+        <h2>1. Real-World Data Integration</h2>
+        <p><strong>Records Processed:</strong> {{ results.get('data_summary', {}).get('total_processed', 0) }}</p>
+        <p><strong>Errors:</strong> {{ results.get('data_summary', {}).get('errors', 0) }}</p>
+    </section>
+
+    <section>
+        <h2>2. Human Factors &amp; Soft Constraints</h2>
+        <p><strong>Task Load:</strong> {{ results.get('human_factors', {}).get('task_load', 0) }}</p>
+        <p><strong>Error Rate:</strong> {{ results.get('human_factors', {}).get('error_rate', 0) }}</p>
+        <p><strong>Crew Count:</strong> {{ results.get('human_factors', {}).get('crew_count', 0) }}</p>
+        <p><strong>Performance Factor:</strong> {{ results.get('human_factors', {}).get('performance_factor', 0) }}</p>
+    </section>
+
+    <section>
+        <h2>3. Novel Project Planning</h2>
+        <p><strong>Iteration:</strong> {{ results.get('novelty_plan', {}).get('iteration', 0) }}</p>
+        <p><strong>Hypotheses:</strong> {{ results.get('novelty_plan', {}).get('hypotheses_count', 0) }}</p>
+        <p><strong>Experiments:</strong> {{ results.get('novelty_plan', {}).get('experiments_count', 0) }}</p>
+        <p><strong>Status:</strong> {{ results.get('novelty_plan', {}).get('status', 'N/A') }}</p>
+    </section>
+
+    <section>
+        <h2>4. Multi-Objective Optimization</h2>
+        <p><strong>Generation:</strong> {{ results.get('optimization_summary', {}).get('generation', 0) }}</p>
+        <p><strong>Pareto Front Size:</strong> {{ results.get('optimization_summary', {}).get('pareto_front_size', 0) }}</p>
+        <h3>Solutions</h3>
+        <ul>
+            {% for solution in results.get('optimization_summary', {}).get('solutions', []) %}
+                <li>{{ solution.get('label', 'Solution') }}: 
+                    {% for key, value in solution.items() %}
+                        {% if key != 'label' %}{{ key }}={{ value }}, {% endif %}
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>5. Interdisciplinary Dependencies</h2>
+        <p><strong>Components:</strong> {{ results.get('dependencies', {}).get('nodes', 0) }}</p>
+        <p><strong>Dependencies:</strong> {{ results.get('dependencies', {}).get('edges', 0) }}</p>
+        <p><strong>Critical Path Length:</strong> {{ results.get('dependencies', {}).get('critical_path_length', 0) }}</p>
+        <p><strong>Component Types:</strong> {{ ', '.join(results.get('dependencies', {}).get('component_types', [])) }}</p>
+    </section>
+
+    <section>
+        <h2>6. Enhanced User Experience</h2>
+        <p><strong>Conversation Turns:</strong> {{ results.get('ux_guidance', {}).get('turns', 0) }}</p>
+        <p><strong>Current Topic:</strong> {{ results.get('ux_guidance', {}).get('topic', 'N/A') }}</p>
+        <h3>Suggestions</h3>
+        <ul>
+            {% for suggestion in results.get('ux_guidance', {}).get('suggestions', []) %}
+                <li>{{ suggestion }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>7. Design Validation &amp; Prototyping</h2>
+        <h3>Test Plan</h3>
+        <p><strong>Test Cases:</strong> {{ results.get('validation_plan', {}).get('test_plan', {}).get('test_cases', 0) }}</p>
+        <h3>Hardware-in-Loop</h3>
+        <p><strong>Tests Run:</strong> {{ results.get('validation_plan', {}).get('hil', {}).get('tests_run', 0) }}</p>
+        <p><strong>Status:</strong> {{ results.get('validation_plan', {}).get('hil', {}).get('status', 'N/A') }}</p>
+        <h3>Field Trials</h3>
+        <p><strong>Trials:</strong> {{ results.get('validation_plan', {}).get('field_trials', {}).get('trials_registered', 0) }}</p>
+    </section>
+
+    <section>
+        <h2>8. Threat Modeling (STRIDE)</h2>
+        <p><strong>Total Threats:</strong> {{ results.get('threat_model', {}).get('total_threats', 0) }}</p>
+        <p><strong>High Risk Threats:</strong> {{ results.get('threat_model', {}).get('high_risk_threats', 0) }}</p>
+        <p><strong>Mitigations Suggested:</strong> {{ results.get('threat_model', {}).get('mitigations_suggested', 0) }}</p>
+        <p><strong>Average Risk Score:</strong> {{ results.get('threat_model', {}).get('average_risk_score', 0) }}</p>
+        <h3>Category Breakdown</h3>
+        <ul>
+            {% for category, count in results.get('threat_model', {}).get('category_breakdown', {}).items() %}
+                <li>{{ category }}: {{ count }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>9. Scalability Planning</h2>
+        <h3>Workload</h3>
+        <p><strong>Users:</strong> {{ results.get('scalability_plan', {}).get('workload', {}).get('concurrent_users', 0) }}</p>
+        <p><strong>Requests/sec:</strong> {{ results.get('scalability_plan', {}).get('workload', {}).get('requests_per_second', 0) }}</p>
+        <h3>Architecture</h3>
+        <p><strong>Replicas:</strong> {{ results.get('scalability_plan', {}).get('architecture', {}).get('application_tier', {}).get('replicas', 0) }}</p>
+        <p><strong>Regions:</strong> {{ ', '.join(results.get('scalability_plan', {}).get('architecture', {}).get('regions', [])) }}</p>
+        <p><strong>Estimated Monthly Cost:</strong> ${{ results.get('scalability_plan', {}).get('estimated_monthly_cost', 0) }}</p>
+        <h3>HA Recommendations</h3>
+        <ul>
+            {% for rec in results.get('scalability_plan', {}).get('ha_recommendations', []) %}
+                <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+    </section>
 </body>
 </html>

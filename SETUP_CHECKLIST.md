@@ -28,6 +28,17 @@
     - base_layer.py
     - meta_optimizer.py
     - simulation_engine.py
+    - **New capability modules:**
+        - data_integration.py
+        - human_factors.py
+        - novelty_manager.py
+        - optimization_engine.py
+        - dependency_graph.py
+        - ux_conversation.py
+        - validation_integration.py
+        - threat_modeling.py
+        - scalability_planner.py
+- [ ] `tests/` folder with test_capabilities.py
 
 ## 3. Imports & File Connections
 - [ ] All imports resolved (no ModuleNotFoundError)
@@ -39,8 +50,10 @@
 
 ## 5. Testing
 - [ ] Dashboard displays all sections (design, metrics, knowledge, requirements, risks, etc.)
+- [ ] Dashboard displays new capability sections (data integration, human factors, etc.)
 - [ ] No template or runtime errors
 - [ ] Data shown matches pipeline output
+- [ ] Run tests: `pytest -q` (all tests should pass)
 
 ## 6. Visualization
 - [ ] Design summary, metrics, risks, trade study, compliance, etc. all visible
