@@ -96,5 +96,94 @@
         <h2>Deployment Status</h2>
         <p>{{ results['deployment'] }}</p>
     </section>
+
+    <!-- New Capabilities -->
+    <section>
+        <h2>Data Integration</h2>
+        <p><strong>Rows:</strong> {{ results.get('data_summary', {}).get('rows', 0) }}</p>
+        <p><strong>Fields:</strong> {{ results.get('data_summary', {}).get('fields', []) | join(', ') }}</p>
+        <p><strong>Sample:</strong> <code>{{ results.get('data_summary', {}).get('sample', {}) }}</code></p>
+    </section>
+
+    <section>
+        <h2>Human Factors</h2>
+        <p><strong>Fatigue Index:</strong> {{ results.get('human_factors', {}).get('fatigue_index', 'N/A') }}</p>
+        <p><strong>Error Rate:</strong> {{ results.get('human_factors', {}).get('error_rate', 'N/A') }}</p>
+        <h3>Regulatory Notices</h3>
+        <ul>
+            {% for notice in results.get('human_factors', {}).get('regulatory_notices', []) %}
+                <li><strong>{{ notice.standard }}</strong>: {{ notice.change }} ({{ notice.effective_date }})</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Novelty & Innovation</h2>
+        <p><strong>Problem:</strong> {{ results.get('novelty_plan', {}).get('problem', 'N/A') }}</p>
+        <p><strong>Hypotheses:</strong> {{ results.get('novelty_plan', {}).get('hypotheses_count', 0) }}</p>
+        <p><strong>Experiments:</strong> {{ results.get('novelty_plan', {}).get('experiments_count', 0) }}</p>
+        <h3>Next Steps</h3>
+        <ul>
+            {% for step in results.get('novelty_plan', {}).get('next_steps', []) %}
+                <li>{{ step }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Optimization</h2>
+        <p><strong>Pareto Candidates:</strong> {{ results.get('optimization_summary', {}).get('pareto_count', 0) }}</p>
+        <p><strong>Convergence:</strong> {{ results.get('optimization_summary', {}).get('convergence', 'N/A') }}</p>
+        {% if results.get('optimization_summary', {}).get('best_candidate') %}
+            <h3>Best Candidate</h3>
+            <pre>{{ results.get('optimization_summary', {}).get('best_candidate', {}) }}</pre>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>Dependencies</h2>
+        <p><strong>Topological Order:</strong> {{ results.get('dependencies', {}).get('topo', []) | join(' → ') }}</p>
+        <p><strong>Critical Path:</strong> {{ results.get('dependencies', {}).get('critical_path', []) | join(' → ') }}</p>
+        <p><strong>Has Cycles:</strong> {{ results.get('dependencies', {}).get('has_cycle', False) }}</p>
+    </section>
+
+    <section>
+        <h2>UX Guidance</h2>
+        <h3>Suggested Next Steps</h3>
+        <ul>
+            {% for suggestion in results.get('ux_guidance', {}).get('suggestions', []) %}
+                <li>{{ suggestion }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Conversation History:</strong> {{ results.get('ux_guidance', {}).get('history_count', 0) }} messages</p>
+    </section>
+
+    <section>
+        <h2>Validation & Testing</h2>
+        <h3>Test Plan</h3>
+        <pre>{{ results.get('validation_plan', {}).get('testplan_md', '') }}</pre>
+        <h3>Field Trials</h3>
+        <p><strong>Total:</strong> {{ results.get('validation_plan', {}).get('trials', {}).get('total_trials', 0) }}</p>
+    </section>
+
+    <section>
+        <h2>Threat Model</h2>
+        <p><strong>Total Threats:</strong> {{ results.get('threat_model', {}).get('total_threats', 0) }}</p>
+        <p><strong>Average Risk:</strong> {{ results.get('threat_model', {}).get('average_risk', 0) }}</p>
+        <h3>STRIDE Categories</h3>
+        <ul>
+            {% for category, threats in results.get('threat_model', {}).get('stride', {}).items() %}
+                <li><strong>{{ category }}:</strong> {{ threats | length }} threat(s)</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Scalability Plan</h2>
+        <p><strong>Replicas:</strong> {{ results.get('scalability_plan', {}).get('replicas', 0) }}</p>
+        <p><strong>Regions:</strong> {{ results.get('scalability_plan', {}).get('regions', []) | join(', ') }}</p>
+        <p><strong>Failover:</strong> {{ results.get('scalability_plan', {}).get('failover', 'N/A') }}</p>
+        <p><strong>Est. Cost:</strong> ${{ results.get('scalability_plan', {}).get('est_cost', 0) }}/month</p>
+    </section>
 </body>
 </html>
